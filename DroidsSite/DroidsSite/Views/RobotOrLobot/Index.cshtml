@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Robot or Lobot";
+}
+
+@section HeadAdditions
+{
+    @*<link href="@Url.Content("~/Content/stars.css")" rel="stylesheet">*@
+}
+
+<div id="game">
+
+    <div id="scoreboard">
+
+        <div style="text-align: center">
+            Wins: {{ GameResult.Player.Wins }} / Losses: {{ GameResult.Player.Losses }} / Win Pct: {{ GameResult.Player.WinPct }}<br />Win Streak: {{ GameResult.Player.Streak }} / Best Streak: {{ GameResult.Player.LongestStreak }}
+        </div>
+    </div>
+
+
+    <div id="title">
+        <span>THESE AREN'T THE DROIDS</span><br/>
+        <span>YOU'RE LOOKING FOR</span>
+    </div>
+    <div id="instructions">
+        Play <strong>ROBOT or LOBOT</strong>. Find all the droids and win...pick Lobot and lose!
+    </div>
+
+    <div style="width: 100%;">
+        <div style="width: 90%; margin-left: auto; margin-right: auto;">
+            <div v-for="card in GameResult.Cards" style="width: 20%; float: left; ">
+                <img v-bind:src="ImageRootUrl + card.Image" class="img-responsive" v-on:click="selectCard(card.Id)" />
+            </div>
+        </div>
+    </div>
+
+    <br style="clear: both"/>
+
+    <div style="height: 90px;">
+        <div id="message">
+            {{ GameResult.GameMessage }}
+        </div>
+
+        <div v-if="GameResult.GameOver" style="text-align: center; height: 30px;">
+            <span v-if="GameResult.PlayerWon" class="game-won">
+                GAME OVER - You Win!
+            </span>
+            <span v-else class="game-lost">
+                GAME OVER - You Lose!
+            </span>
+            &nbsp;&nbsp;&nbsp;<a v-on:click="selectCard('x')" style="color: #f26417; text-decoration: none; cursor: pointer;">Play again?</a>
+        </div>        
+    </div>
+
+
+</div>
+
+        <div style="width: 728px; height: 90px; margin-left: auto; margin-right: auto;">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Droids Main -->
+            <ins class="adsbygoogle"
+                 style="display: inline-block; width: 728px; height: 90px"
+                 data-ad-client="ca-pub-9192155997161302"
+                 data-ad-slot="9524625220"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+<div id="contact">
+    <a href="mailto:ben@thesearentthedroids.com" style="text-decoration: none; color: #fff">&#64;</a>
+</div>
+
+<script src="@Url.Content("~/Scripts/vue.robotorlobot.js")"></script>
+<script type="text/javascript">
+    vm.init();
+</script>
